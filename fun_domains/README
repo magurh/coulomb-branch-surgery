@@ -1,47 +1,26 @@
-FunDomain:
+# FunDomain
 
-FunDomain is a java program written by Helena A. Verrill
-for drawing fundamental domains of certain congruence 
-subgroups of SL_2(Z) acting on the upper half complex plane.
+FunDomain is a java program written by Helena A. Verrill for drawing fundamental domains of certain congruence subgroups of ${\rm SL}_2(\mathbb{Z})$ acting on the upper half complex plane.
 
-The program is covered by the GNU GPL license.
+As the original website of the owner is down, I am uploading a slightly modified version of FunDomain, which maintains the same functionality.
+
+The original program is covered by the GNU GPL license.
 
 To run the program, you will need to be able to
 run java programs, either from a browser such
 as netscape, or in an applet.
 
-You'll need to have "javac" installed to compile
-the program, and "java" to run it.
-You can get these from:
-http://java.sun.com/j2se/
-
-If you already have java, you can find the version
-by typing
+To run the program, you need to have "javac" installed to compile the program, and "java" to run it. You can get these from: http://java.sun.com/j2se/.
+If you already have java, you can find the version by typing
 > java -version
-If it's  1.1.1 or higher this, program should work for you.
-(If you're using linux you might have to edit your
-font.properties file for it to not give error messages)
 
-Unpack the fundomain.tar.gz file by typing:
-> tar -zxvf fundomain.tar.gz
-This produces a fundomain directory containing the following files:
-
- README
- GNUGPL.txt
- ArcSection.java
- ConFrac.java
- ConjClassRep.java
- FunDomain.java
- HypTriangle.java
- IntMat.java
- ModN.java
- RepList.java     
+The program works for versions newer than 1.1.1.
 
 
-To compile the program, type:
+To compile the program, type in a command line:
 > javac FunDomain.java
 
-To run the resulting program, type
+To run the resulting program, type:
 > java FunDomain
 
 A java applet should pop up.
@@ -72,8 +51,7 @@ Colour choice buttons:    Change colour of triangles
 Fundamental domain drawing mode:
 --------------------------------
 
-Draws Fundamental Domain for intersection of
-one of
+Draws Fundamental Domain for intersection of one of
 Gamma^0(N), Gamma^1(N), Gamma_0(N), Gamma_1(N), Gamma(N)
 with one of
 Gamma^0(M), Gamma^1(M), Gamma_0(M), Gamma_1(M), Gamma(M).
@@ -120,12 +98,5 @@ Move to:    this moves the origin so that the triangle just drawn is
 Scale to:   If you click on this, in addition to moving, it also scales, 
             so the triangle just drawn is in the middle of the screen, 
             AND at a reasonable size so you can see it.
-
-
-
-For more instructions for how to use the program see the web page at:
-http://hverrill.net/fundomain/index.html
-
-
 
 
