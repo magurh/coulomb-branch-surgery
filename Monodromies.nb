@@ -1,1 +1,1138 @@
-Notebook[{}]
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     38848,       1130]
+NotebookOptionsPosition[     34980,       1057]
+NotebookOutlinePosition[     35481,       1075]
+CellTagsIndexPosition[     35438,       1072]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["ReadMe", "Subsection",
+ CellChangeTimes->{{3.920697541924615*^9, 
+  3.920697544803337*^9}},ExpressionUUID->"892b4d8c-be93-4045-87d6-\
+0bc58b536d10"],
+
+Cell[TextData[{
+ "This notebook can be used together with the FunDomain java applet for \
+changing fundamental domains.\n\n\nDefinitions: \n\n-- ",
+ StyleBox["S0, T0:",
+  FontWeight->"Bold"],
+ " return the ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"S", ",", "T"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "52e25740-e498-495d-b644-ad78514fdcc7"],
+ " generators of SL(2,Z).\n\n-- ",
+ StyleBox["S[n], T[n]: ",
+  FontWeight->"Bold"],
+ "return ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["S", "n"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "5f09cde8-8e9a-4a26-93b8-963e92aa06cb"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["T", "n"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "49aa65ae-3654-4681-808d-defff93b8cdd"],
+ "\n\n-- ",
+ StyleBox["Conj[A, B]: ",
+  FontWeight->"Bold"],
+ "returns the conjugate ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"A", ".", "B", ".", 
+    SuperscriptBox["A", 
+     RowBox[{"-", "1"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "1755e85b-9b5a-4fef-b9cc-ad17bf227e71"],
+ ", which is useful in finding monodromy matrices from coset representatives \
+-- see e.g. [1]\n\n-- ",
+ StyleBox["Mat[m, q]:",
+  FontWeight->"Bold"],
+ " returns the monodromy matrix associated to a BPS state that generates an ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["I", "1"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "707f5360-9e4b-437a-bfad-5636625a19c2"],
+ " singularity on the Coulomb branch\n\n-- ",
+ StyleBox["Mat[m, q, n]: ",
+  FontWeight->"Bold"],
+ "returns the ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["n", "th"], TraditionalForm]],
+  FormatType->TraditionalForm,
+  FontWeight->"Plain",ExpressionUUID->"519dbb34-a8c6-48f6-b569-c7691c769741"],
+ " power of Mat[m, q]",
+ StyleBox["\n\n",
+  FontWeight->"Bold"],
+ "--",
+ StyleBox[" M\[Tau][M0, \[Tau]]: ",
+  FontWeight->"Bold"],
+ "returns the action of the SL(2,Z) matrix M0 on the complex number ",
+ "\[Tau]\n\n",
+ "-- ",
+ StyleBox["MatrixFromIntegers[list]: ",
+  FontWeight->"Bold"],
+ "Given a list of integers [p0, p1, p2, ...], the function returns the matrix \
+",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["T", "p0"], "S", " ", 
+     SuperscriptBox["T", "p1"], "S", " ", 
+     SuperscriptBox["T", "p2"], " ", "S"}], " ", "..."}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "82af7c8a-6e5d-476e-b0f0-8d972dc18f0e"],
+ "\n\n",
+ "\nReferences:\n\n[1] H. Magureanu, ",
+ StyleBox["Seiberg-Witten geometry, modular rational elliptic surfaces and \
+BPS quivers",
+  FontSlant->"Italic"],
+ ", JHEP 05 (2022) 163, [2203.03755]."
+}], "Text",
+ CellChangeTimes->{{3.9206976661822214`*^9, 3.920697951753157*^9}, {
+  3.9206981112757745`*^9, 3.9206981556582365`*^9}, {3.920721309523274*^9, 
+  3.9207213527298975`*^9}, {3.920721898116892*^9, 3.920721936698348*^9}, {
+  3.92072200365932*^9, 
+  3.920722024913069*^9}},ExpressionUUID->"28610a8f-158d-48b4-9546-\
+4ebb7f4aa0ac"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Functions", "Subsection",
+ CellChangeTimes->{{3.920697541924615*^9, 3.920697544803337*^9}, {
+  3.920721369603735*^9, 
+  3.9207213783308372`*^9}},ExpressionUUID->"c4e5d508-c7e7-4554-bbc5-\
+7f893d84e1c9"],
+
+Cell[CellGroupData[{
+
+Cell["SL(2,Z) matrices", "Subsubsection",
+ CellChangeTimes->{{3.825650796332692*^9, 3.8256508008686724`*^9}, {
+  3.920721384350102*^9, 
+  3.9207213965623856`*^9}},ExpressionUUID->"99f5a05f-dcfe-4aec-ba91-\
+7ed6eaf0beac"],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{
+   "Conj", ",", "A", ",", "B", ",", " ", "S0", ",", " ", "T0", ",", " ", "P", 
+    ",", " ", "T", ",", " ", "Mat"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"S0", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"-", "1"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"T0", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"P", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        RowBox[{"-", "1"}]}], "}"}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"S", "[", "n_", "]"}], ":=", 
+   RowBox[{"MatrixPower", "[", 
+    RowBox[{"S0", ",", "n"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"T", "[", "n_", "]"}], ":=", " ", 
+   RowBox[{"MatrixPower", "[", 
+    RowBox[{"T0", ",", "n"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Conj", "[", 
+     RowBox[{"A_", ",", "B_"}], "]"}], "=", 
+    RowBox[{"A", ".", "B", ".", 
+     RowBox[{"Inverse", "[", "A", "]"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"M\[Tau]", "[", 
+    RowBox[{"M0_", ",", " ", "\[Tau]_"}], "]"}], ":=", 
+   FractionBox[
+    RowBox[{
+     RowBox[{
+      RowBox[{"M0", "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ",", "1"}], "]"}], "]"}], "\[Tau]"}], "+", 
+     RowBox[{"M0", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "2"}], "]"}], "]"}]}], 
+    RowBox[{
+     RowBox[{
+      RowBox[{"M0", "[", 
+       RowBox[{"[", 
+        RowBox[{"2", ",", "1"}], "]"}], "]"}], "\[Tau]"}], "+", 
+     RowBox[{"M0", "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "2"}], "]"}], "]"}]}]]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8256508019037075`*^9, 3.825650848258103*^9}, {
+  3.8256757167229967`*^9, 3.825675717502204*^9}, {3.8256757851170163`*^9, 
+  3.825675800941312*^9}, {3.833256630973768*^9, 3.8332566311520214`*^9}, {
+  3.836036182883222*^9, 3.836036187370722*^9}, {3.836547134955637*^9, 
+  3.836547135316455*^9}, {3.836722611793646*^9, 3.8367226176688814`*^9}, {
+  3.8370569217383785`*^9, 3.837056933667616*^9}, {3.8406807031631727`*^9, 
+  3.840680706786651*^9}, {3.8406807656945477`*^9, 3.840680766642888*^9}, {
+  3.844402970607684*^9, 3.8444029714920073`*^9}, {3.8444887623991013`*^9, 
+  3.8444887814731817`*^9}, {3.9206976218429155`*^9, 3.92069765523737*^9}, {
+  3.920698167005664*^9, 3.9206981676019554`*^9}, {3.9207212185476584`*^9, 
+  3.920721278047154*^9}, {3.920721402003299*^9, 
+  3.920721402916443*^9}},ExpressionUUID->"492014e5-e76f-47b9-81dc-\
+8358b9a0b864"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Monodromy matrices", "Subsubsection",
+ CellChangeTimes->{{3.825650796332692*^9, 3.8256508008686724`*^9}, {
+  3.920721384350102*^9, 
+  3.9207214236773233`*^9}},ExpressionUUID->"73124b4f-7b23-40ed-879a-\
+89ec01eae804"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Clear", "[", 
+    RowBox[{"Mat", ",", "m", ",", "q"}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Mat", "[", 
+    RowBox[{"m_", ",", "q_"}], "]"}], ":=", 
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {
+        RowBox[{"1", "+", 
+         RowBox[{"m", " ", "q"}]}], 
+        SuperscriptBox["q", "2"]},
+       {
+        RowBox[{"-", 
+         SuperscriptBox["m", "2"]}], 
+        RowBox[{"1", "-", 
+         RowBox[{"m", " ", "q"}]}]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Mat", "[", 
+     RowBox[{"m_", ",", "q_", ",", "n_"}], "]"}], ":=", 
+    RowBox[{"MatrixPower", "[", 
+     RowBox[{
+      RowBox[{"Mat", "[", 
+       RowBox[{"m", ",", "q"}], "]"}], ",", "n"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"MatrixFromIntegers", "[", "list_", "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"M0", " ", "=", " ", 
+        RowBox[{"ConstantArray", "[", 
+         RowBox[{
+          RowBox[{"{", "}"}], ",", 
+          RowBox[{
+           RowBox[{"Length", "[", "list", "]"}], "+", "1"}]}], "]"}]}], " ", 
+       ",", 
+       RowBox[{"numbers", " ", "=", " ", "list"}], ",", " ", 
+       RowBox[{"L", " ", "=", " ", 
+        RowBox[{"Length", "[", "list", "]"}]}], ",", " ", 
+       RowBox[{"j", "=", "1"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"M0", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], " ", "=", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Do", "[", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"M0", "[", 
+          RowBox[{"[", 
+           RowBox[{"j", "+", "1"}], "]"}], "]"}], " ", "=", " ", 
+         RowBox[{
+          RowBox[{"M0", "[", 
+           RowBox[{"[", "j", "]"}], "]"}], ".", 
+          RowBox[{"T", "[", 
+           RowBox[{
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"-", "1"}], ")"}], 
+             RowBox[{"j", "+", "1"}]], 
+            RowBox[{"list", "[", 
+             RowBox[{"[", "j", "]"}], "]"}]}], "]"}], ".", 
+          RowBox[{"S", "[", "1", "]"}]}]}], ",", "\[IndentingNewLine]", "\t", 
+        RowBox[{"{", 
+         RowBox[{"j", ",", "1", ",", " ", "L"}], "}"}]}], 
+       "\[IndentingNewLine]", "\t", "]"}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"M0", "[", 
+       RowBox[{"[", 
+        RowBox[{"L", "+", "1"}], "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.9207218892069855`*^9, 3.920721893263673*^9}},
+ CellLabel->"In[85]:=",ExpressionUUID->"2278653b-ab18-4c01-9ea8-eb36dad2b0e8"]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Routines", "Subsection",
+ CellChangeTimes->{{3.920697541924615*^9, 3.920697544803337*^9}, {
+  3.920721369603735*^9, 3.9207213783308372`*^9}, {3.920721434674024*^9, 
+  3.9207214354190817`*^9}},ExpressionUUID->"73b3e06a-95f2-4d1a-a08a-\
+aafd1f642b32"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Mapping ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["\[CapitalGamma]", "0"], "(", "4", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "b2cdc36c-c88a-4543-8454-b4a1da4e70e0"],
+ " to ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["\[CapitalGamma]", "0"], "(", "4", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "184b5196-42e5-4853-8823-a7927d60caa2"],
+ " "
+}], "Subsubsection",
+ CellChangeTimes->{{3.825650796332692*^9, 3.8256508008686724`*^9}, {
+  3.920697998030096*^9, 3.9206979989883413`*^9}, {3.9206980548801603`*^9, 
+  3.9206980736133084`*^9}, {3.920698194530815*^9, 3.92069820311335*^9}, {
+  3.920699295763088*^9, 3.9206992979574966`*^9}, {3.92072144042356*^9, 
+  3.920721443410804*^9}, {3.920721530679373*^9, 
+  3.920721531270976*^9}},ExpressionUUID->"d033613c-373e-4312-a397-\
+9194deb448fe"],
+
+Cell[TextData[{
+ "The standard fundamental domain for ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["\[CapitalGamma]", "0"], "(", "4", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "198f3d23-4521-40f9-a1ed-6073b27b3ff6"],
+ " has the following coset representatives:"
+}], "Text",
+ CellChangeTimes->{{3.9206980784186015`*^9, 
+  3.9206980960841126`*^9}},ExpressionUUID->"90b5b898-5975-4f30-9ca7-\
+bf87961c7a88"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[CapitalGamma]04cr", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"T", "[", "0", "]"}], ",", 
+     RowBox[{"T", "[", "1", "]"}], ",", 
+     RowBox[{"T", "[", "2", "]"}], ",", 
+     RowBox[{"T", "[", "3", "]"}], ",", 
+     RowBox[{"S", "[", "1", "]"}], ",", 
+     RowBox[{
+      RowBox[{"T", "[", "2", "]"}], ".", 
+      RowBox[{"S", "[", "1", "]"}]}]}], "}"}]}], ";"}]], "Input",
+ CellLabel->"In[34]:=",ExpressionUUID->"e9320e7f-a7ee-47b5-ad00-e86724ae1706"],
+
+Cell[TextData[{
+ "In this representations, the cusps are situated at:\[LineSeparator]\n-- \
+width 4 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{"\[ImaginaryI]", " ", "\[Infinity]"}]}], TraditionalForm]],
+  ExpressionUUID->"a0b01080-ccaf-4cc2-a8a8-b8113ca05cd3"],
+ " \n-- width 1 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", "0"}], TraditionalForm]],ExpressionUUID->
+  "f97cd63a-7087-4251-95fb-b0523d23d10c"],
+ " \n-- width 1 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", "2"}], TraditionalForm]],ExpressionUUID->
+  "0a9ac300-8e1d-495f-92ea-d4df1376f072"],
+ "\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["\[CapitalGamma]", "0"], "(", "4", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "69ea5e2a-0af8-48e2-8c7f-4772ebbbfe93"],
+ " to ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["\[CapitalGamma]", "0"], "(", "4", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "c61a6be0-187e-4e4f-b40f-9123c4d0ac05"],
+ " are related by an S-transformation. This clearly exchanges the cusps at ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{"\[ImaginaryI]", " ", "\[Infinity]"}]}], TraditionalForm]],
+  ExpressionUUID->"832a70be-5846-4109-a6f7-74782633910f"],
+ "  and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", "0"}], TraditionalForm]],ExpressionUUID->
+  "bbfe5b01-a28c-4e9a-8bc6-93815f7a028a"],
+ ". Meanwhile, the cusp at ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", "2"}], TraditionalForm]],ExpressionUUID->
+  "1047ad29-c143-4b7b-bdb5-55501aa4f13a"],
+ " is mapped to:  "
+}], "Text",
+ CellChangeTimes->{{3.920698217564822*^9, 3.920698258780245*^9}, {
+  3.920699306698985*^9, 3.9206993342679806`*^9}, {3.9207214556521144`*^9, 
+  3.9207215370301504`*^9}, {3.920721630748271*^9, 
+  3.920721696957757*^9}},ExpressionUUID->"97840504-cee6-4316-bf89-\
+3507d71e61d4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{" ", 
+  RowBox[{"M\[Tau]", "[", 
+   RowBox[{
+    RowBox[{"S", "[", "1", "]"}], ",", "2"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9207215524428253`*^9, 3.9207216222075872`*^9}, {
+  3.9207216584527583`*^9, 3.920721659739439*^9}, {3.920721700551652*^9, 
+  3.9207217076709423`*^9}},
+ CellLabel->"In[83]:=",ExpressionUUID->"62b55a5f-f449-4a20-b426-8a0214a707a8"],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox["1", "2"]}]], "Output",
+ CellChangeTimes->{
+  3.9207215737859926`*^9, {3.920721612845787*^9, 3.9207216231881137`*^9}, 
+   3.920721708428136*^9},
+ CellLabel->"Out[83]=",ExpressionUUID->"074f7ccc-7fdd-43af-b5bb-8f5ae8f35f50"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Thus, ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["\[CapitalGamma]", "0"], "(", "4", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "37284006-348e-44a6-aeb4-6dd90dc7a7ef"],
+ " will have:\n\n-- width 1 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{"\[ImaginaryI]", " ", "\[Infinity]"}]}], TraditionalForm]],
+  ExpressionUUID->"0151da06-4d3e-4aeb-be2c-5e2f480b0afc"],
+ " \n-- width 4 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", "0"}], TraditionalForm]],ExpressionUUID->
+  "7be5f95a-11fe-4c10-8515-a5214b039603"],
+ " \n-- width 1 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{"-", 
+     FractionBox["1", "2"]}]}], TraditionalForm]],ExpressionUUID->
+  "66261567-7f65-48b9-92ca-357fb4529530"],
+ "\n\nOne can then find the coset representatives as follows. \n\n-- width 1 \
+cusp at ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{"\[ImaginaryI]", " ", "\[Infinity]"}]}], TraditionalForm]],
+  ExpressionUUID->"44c67bc9-ff39-481c-9502-0fdaea8ce148"],
+ ": ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox["T", "0"], "}"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "d4efac56-55f0-49e1-8618-a85fe641aff1"],
+ "\n-- width 4 cusp at ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", "0"}], TraditionalForm]],ExpressionUUID->
+  "50e249b4-4f65-490c-8ceb-ade97ee76383"],
+ ": ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{"S", ",", " ", "ST", ",", " ", 
+     SuperscriptBox["ST", "2"], ",", " ", 
+     SuperscriptBox["ST", "3"]}], "}"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "45940554-80c3-4711-a3fa-f3c65d4eabec"],
+ "\n\nFinally, for the width 1 cusp ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{"-", 
+     FractionBox["1", "2"]}]}], TraditionalForm]],ExpressionUUID->
+  "e2e7c984-0c95-4f2e-96f6-351c7d511770"],
+ " we use the ",
+ StyleBox["ContinuedFraction[]",
+  FontWeight->"Bold"],
+ " function to create a list of integers {p0, p1, p2, ...}, which will lead \
+to a possible coset representative ",
+ Cell[BoxData[
+  RowBox[{
+   RowBox[{
+    SuperscriptBox["T", "p0"], "S", " ", 
+    SuperscriptBox["T", "p1"], "S", " ", 
+    SuperscriptBox["T", "p2"], " ", "S"}], " ", "..."}]],ExpressionUUID->
+  "a83e990a-0f97-4f76-979c-24e57cdb192c"],
+ " through ",
+ StyleBox["MatrixFromIntegers[]. ",
+  FontWeight->"Bold"],
+ "We refer to [1] for more details."
+}], "Text",
+ CellChangeTimes->{{3.9207217209558506`*^9, 3.920721874674908*^9}, {
+  3.9207220595363297`*^9, 
+  3.9207221353872485`*^9}},ExpressionUUID->"ebd59ed2-d761-430f-9457-\
+6cdffad07a25"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"ContinuedFraction", "[", 
+  FractionBox[
+   RowBox[{"-", "1"}], "2"], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  StyleBox[
+   RowBox[{"MatrixFromIntegers", "[", "%", "]"}],
+   FontWeight->"Bold"], 
+  StyleBox["//",
+   FontWeight->"Bold"], "MatrixForm"}]}], "Input",
+ CellChangeTimes->{
+  3.920721670831191*^9, {3.9207218536033196`*^9, 3.920721865398184*^9}, {
+   3.9207221454057274`*^9, 3.9207221459820547`*^9}},
+ CellLabel->"In[98]:=",ExpressionUUID->"7965a21c-719a-4cfa-ad61-92127c90ef55"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0", ",", 
+   RowBox[{"-", "2"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.9207216714564285`*^9, 3.920721865750163*^9, {3.920721965880377*^9, 
+   3.9207219836528945`*^9}, 3.920722146579544*^9},
+ CellLabel->"Out[98]=",ExpressionUUID->"4d518394-88bb-48e0-9e24-5b449cde44d1"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{"-", "1"}], "0"},
+     {"2", 
+      RowBox[{"-", "1"}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{
+  3.9207216714564285`*^9, 3.920721865750163*^9, {3.920721965880377*^9, 
+   3.9207219836528945`*^9}, 3.920722146586528*^9},
+ CellLabel->
+  "Out[99]//MatrixForm=",ExpressionUUID->"f2cda2f5-b938-4b63-92e9-\
+524031cefe53"]
+}, Open  ]],
+
+Cell["Finally, check that this is the expected result:", "Text",
+ CellChangeTimes->{{3.920722150011486*^9, 
+  3.9207221555350885`*^9}},ExpressionUUID->"4553c34e-d11b-48d2-b7fa-\
+b5712ffa0b59"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"S", "[", "1", "]"}], ".", 
+   RowBox[{"T", "[", "2", "]"}], ".", 
+   RowBox[{"S", "[", "1", "]"}]}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.9207219586384373`*^9, 3.9207219814698553`*^9}, {
+  3.9207221447457457`*^9, 3.9207221578353043`*^9}},
+ CellLabel->
+  "In[100]:=",ExpressionUUID->"d6bc99fe-424d-4555-9561-faa29f7cbada"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{"-", "1"}], "0"},
+     {"2", 
+      RowBox[{"-", "1"}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.9207219606551847`*^9, 3.9207219850034847`*^9}, 
+   3.920722158330879*^9},
+ CellLabel->
+  "Out[100]//MatrixForm=",ExpressionUUID->"0f27d376-deb6-447e-a424-\
+67b3f82179f0"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Monodromies of Elliptic points: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["\[CapitalGamma]", "0"], "(", "2", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "71bbd4e9-0cc2-42d3-8fcd-9a094a0cafca"]
+}], "Subsubsection",
+ CellChangeTimes->{{3.825650796332692*^9, 3.8256508008686724`*^9}, {
+  3.920697998030096*^9, 3.9206979989883413`*^9}, {3.9206980548801603`*^9, 
+  3.9206980736133084`*^9}, {3.920698194530815*^9, 3.92069820311335*^9}, {
+  3.920699295763088*^9, 3.9206992979574966`*^9}, {3.92072144042356*^9, 
+  3.920721443410804*^9}, {3.920721530679373*^9, 3.920721531270976*^9}, {
+  3.9207222141834497`*^9, 
+  3.920722242061612*^9}},ExpressionUUID->"1b145886-7005-4e36-a5f2-\
+d604d7407bdc"],
+
+Cell[TextData[{
+ "To show how the charges of BPS states forming elliptic points can be \
+determined, consider a ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["\[CapitalGamma]", "0"], "(", "2", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "1c2aacfa-e8dc-4192-adf1-de94380356f8"],
+ " configuration for the 4d SU(2) ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["N", "f"], "=", "2"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "dc4f17ab-e7ad-4163-9fb3-dabf50782293"],
+ " theory. We refer to [2, 3] for more details.\n\n[2] C. Closset and H. \
+Magureanu, ",
+ StyleBox["The U-plane of rank-one 4d N = 2 KK theories",
+  FontSlant->"Italic"],
+ ", SciPost Phys. 12 (2022) 065, [2107.03509].\n[3] J. Aspman, E. Furrer and \
+J. Manschot, ",
+ StyleBox["Cutting and gluing with running couplings in N = 2 QCD",
+  FontSlant->"Italic"],
+ ", Phys. Rev. D 105 (2022) 025021, [2107.04600].\n\nThe ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["\[CapitalGamma]", "0"], "(", "2", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "44f864a9-b4a6-4769-8211-25f576021708"],
+ " configuration ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox[
+       SubscriptBox["I", "2"], "*"], ";", " ", 
+      SubscriptBox["I", "1"]}], ",", " ", "III"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "5b06aba3-df07-447c-9c51-7be284b36eab"],
+ ") appears when the masses are set to ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["m", "1"], "=", 
+    RowBox[{
+     SubscriptBox["m", "2"], "=", "\[CapitalLambda]"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "b3246b52-f518-4d07-abab-2c701165688d"],
+ ", in the conventions of [2]. To determine the BPS charges, we look instead \
+for a configuration that only contains ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["I", "k"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "306b4bc6-3f43-4791-b427-6e50856514fa"],
+ "-type singular fibers.\n\nFor ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["m", "1"], "=", 
+    RowBox[{
+     SubscriptBox["m", "2"], "=", "0"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "c1ef670b-df24-4e14-b3e9-f49a2a90bdf7"],
+ ", one has instead a \[CapitalGamma](2) monodromy group, with singular \
+fibers ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox[
+       SubscriptBox["I", "2"], "*"], ";", " ", 
+      SubscriptBox["I", "2"]}], ",", " ", 
+     SubscriptBox["I", "2"]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "ebf9272f-cba1-4f06-980d-ed3767d986c4"],
+ "). A possible domain is given by:\n\n-- width 2 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{
+     RowBox[{"\[ImaginaryI]", " ", "\[Infinity]"}], " ", "->", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       SuperscriptBox["T", "0"], ",", 
+       SuperscriptBox["T", "1"]}], "}"}]}]}], TraditionalForm]],
+  ExpressionUUID->"ef56250e-67c9-4ee9-8fa6-87a89cbd22b3"],
+ " \n-- width 2 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{"0", "->", " ", 
+     RowBox[{"{", 
+      RowBox[{"S", ",", "ST"}], "}"}]}]}], TraditionalForm]],ExpressionUUID->
+  "db4b8da4-d3ac-459e-8019-8e8d37de68e4"],
+ " \n-- width 2 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{"1", "->", " ", 
+     RowBox[{"{", 
+      RowBox[{"TS", ",", "TST"}], "}"}]}]}], TraditionalForm]],ExpressionUUID->
+  "decf9ef9-b6af-4fa8-95a2-3308224d9df9"],
+ "\n\nIn [1], we suggested that for (maximally deformable) ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["I", "k"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "f45aa529-157f-4c03-9b66-31ea88c8c371"],
+ " singularities at position ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    FractionBox["q", "m"]}], TraditionalForm]],ExpressionUUID->
+  "3aa44637-f21d-40bb-8732-c88f3c3e3d79"],
+ ", we associate ",
+ Cell[BoxData[
+  FormBox["k", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "3c3b5de9-1b28-4d31-933d-c55523f45443"],
+ " light BPS states of charges ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[PlusMinus]", 
+    RowBox[{"(", 
+     RowBox[{"m", ",", " ", 
+      RowBox[{"-", "q"}]}], ")"}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "f7835f7e-c38b-44d6-97b2-e24a9485ec80"],
+ ". Convention: (magnetic, electric). Thus, for this ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["m", "1"], "=", 
+    RowBox[{
+     SubscriptBox["m", "2"], "=", "0"}]}], TraditionalForm]],ExpressionUUID->
+  "ac4d6009-d4ba-4884-a8cd-0e82fe00ad62"],
+ " mass parameters we have:\n\n-- width 2 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{"0", " ", "->", " ", 
+     RowBox[{"2", " ", "monopoles", " ", "of", " ", "charges", " ", 
+      RowBox[{"(", 
+       RowBox[{"1", ",", "0"}], ")"}]}]}]}], TraditionalForm]],ExpressionUUID->
+  "5f2308eb-6bae-4255-ac19-13cd2292066a"],
+ " \n-- width 2 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{"1", "->", " ", 
+     RowBox[{"2", " ", "dyons", " ", "of", " ", "charges", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", " ", "1"}], ")"}]}]}]}], TraditionalForm]],
+  ExpressionUUID->"6c0c03e9-e864-4618-a548-7e4aff0464a2"],
+ ".\n\nNote that:"
+}], "Text",
+ CellChangeTimes->{{3.9207222548622723`*^9, 3.9207222805386815`*^9}, {
+  3.920722328059915*^9, 
+  3.9207229141281686`*^9}},ExpressionUUID->"03d6909c-beee-45ba-800d-\
+500386c141c6"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Conj", "[", 
+   RowBox[{
+    RowBox[{"S", "[", "1", "]"}], ",", 
+    RowBox[{"T", "[", "2", "]"}]}], "]"}], "==", 
+  RowBox[{"MatrixPower", "[", 
+   RowBox[{
+    RowBox[{"Mat", "[", 
+     RowBox[{"1", ",", "0"}], "]"}], ",", "2"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Conj", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"T", "[", "1", "]"}], ".", 
+     RowBox[{"S", "[", "1", "]"}]}], ",", 
+    RowBox[{"T", "[", "2", "]"}]}], "]"}], "==", 
+  RowBox[{"MatrixPower", "[", 
+   RowBox[{
+    RowBox[{"Mat", "[", 
+     RowBox[{
+      RowBox[{"-", "1"}], ",", "1"}], "]"}], ",", "2"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9207228589704237`*^9, 3.9207228599203887`*^9}, {
+  3.9207229218495817`*^9, 3.920722995209386*^9}},
+ CellLabel->
+  "In[107]:=",ExpressionUUID->"f203b950-7642-4cd3-a16c-1d702050eb39"],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{{3.920722951383849*^9, 3.9207229959801235`*^9}},
+ CellLabel->
+  "Out[107]=",ExpressionUUID->"db2c39a2-4233-4abc-a4ee-4b4a11fcec89"],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{{3.920722951383849*^9, 3.92072299598615*^9}},
+ CellLabel->
+  "Out[108]=",ExpressionUUID->"f2bf8652-63fd-4758-ba59-f0106c9e132a"]
+}, Open  ]],
+
+Cell["We also have the consistency check (in PSL(2,Z)):", "Text",
+ CellChangeTimes->{{3.920723525042883*^9, 
+  3.9207235365389233`*^9}},ExpressionUUID->"ca2a6265-b1cc-456f-8d21-\
+73f7a2faf48a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"MatrixPower", "[", 
+    RowBox[{
+     RowBox[{"Mat", "[", 
+      RowBox[{"1", ",", "0"}], "]"}], ",", "2"}], "]"}], ".", 
+   RowBox[{"MatrixPower", "[", 
+    RowBox[{
+     RowBox[{"Mat", "[", 
+      RowBox[{
+       RowBox[{"-", "1"}], ",", "1"}], "]"}], ",", "2"}], "]"}], ".", 
+   RowBox[{"T", "[", "2", "]"}]}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.92072349936629*^9, 3.92072351531495*^9}},
+ CellLabel->
+  "In[122]:=",ExpressionUUID->"34519afc-7934-44bf-a128-cffcf84d26c2"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{"-", "1"}], "0"},
+     {"0", 
+      RowBox[{"-", "1"}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.9207235039088345`*^9, 3.9207235386021214`*^9}},
+ CellLabel->
+  "Out[122]//MatrixForm=",ExpressionUUID->"40f1a227-ea8e-460b-84b3-\
+3a0bed8415f8"]
+}, Open  ]],
+
+Cell[TextData[{
+ "We then return to the ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["\[CapitalGamma]", "0"], "(", "2", ")"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "91c2cdcb-6551-4b2b-b01a-46f0063d5b63"],
+ " configuration, for which a suitable domain is:\n\n-- width 2 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{
+     RowBox[{"\[ImaginaryI]", " ", "\[Infinity]"}], " ", "->", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       SuperscriptBox["T", "0"], ",", 
+       SuperscriptBox["T", "1"]}], "}"}]}]}], TraditionalForm]],
+  ExpressionUUID->"99866f21-6739-4e09-a44d-17214bc8c028"],
+ " \n-- width 1 cusp: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{"0", "->", " ", 
+     RowBox[{
+      RowBox[{"{", "S", "}"}], "->", " ", 
+      RowBox[{"one", " ", "monopole", " ", "of", " ", "charge", " ", 
+       RowBox[{"(", 
+        RowBox[{"1", ",", "0"}], ")"}]}]}]}]}], TraditionalForm]],
+  ExpressionUUID->"a6576fbc-c039-4e2c-83c6-4b9cdb63dd6b"],
+ "  \n-- type III elliptic point: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    RowBox[{
+     RowBox[{"1", "+", 
+      FractionBox["\[ImaginaryI]", "2"]}], "->", " ", 
+     RowBox[{"three", " ", "BPS", " ", 
+      RowBox[{"states", "?"}]}]}]}], TraditionalForm]],ExpressionUUID->
+  "802e80fe-52c9-4459-baf3-30d9c3476526"],
+ "\n\nNote that a III elliptic point on the fundamental domain at ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Tau]", "=", 
+    FractionBox["\[ImaginaryI]", "2"]}], TraditionalForm]],ExpressionUUID->
+  "c5d35d15-099e-4a84-bd0a-2624e0b652df"],
+ " of SL(2,Z) has monodromy conjugate to ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["S", 
+    RowBox[{"-", "1"}]], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "0991ee3e-abe5-41e5-a2f0-771b4e83c3df"],
+ ", namely ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["TS", 
+     RowBox[{"-", "1"}]], 
+    SuperscriptBox["T", 
+     RowBox[{"-", "1"}]]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "eee63803-2c52-4eb5-80ce-7f905cdd4aa0"],
+ ". Thus, in our case the monodromy reads: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"(", "TS", ")"}], 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{
+       SuperscriptBox["S", 
+        RowBox[{"-", "1"}]], "(", "TS", ")"}], 
+      RowBox[{"-", "1"}]], "."}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "1cb27932-62c9-46ee-b063-47619fafeff7"],
+ "\n\nThis can be reconstructed from the BPS states \
+\[OpenCurlyDoubleQuote]missing\[CloseCurlyDoubleQuote] as compared to the \
+massless configuration: one monopole (1,0) and two dyons (-1, 1):"
+}], "Text",
+ CellChangeTimes->{{3.9207230112812605`*^9, 3.9207230998395452`*^9}, {
+  3.9207231690471563`*^9, 3.920723209982503*^9}, {3.9207232695980315`*^9, 
+  3.9207233298270817`*^9}, {3.920723555772188*^9, 3.920723580642681*^9}, {
+  3.920724393905615*^9, 
+  3.9207244436777678`*^9}},ExpressionUUID->"6d7c00c5-3269-4d14-a853-\
+6c57ae00e27c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Mat", "[", 
+    RowBox[{"1", ",", "0"}], "]"}], ".", 
+   RowBox[{"MatrixPower", "[", 
+    RowBox[{
+     RowBox[{"Mat", "[", 
+      RowBox[{
+       RowBox[{"-", "1"}], ",", "1"}], "]"}], ",", "2"}], "]"}]}], " ", "==", 
+  "\[IndentingNewLine]", 
+  RowBox[{"Conj", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"T", "[", "1", "]"}], ".", 
+     RowBox[{"S", "[", "1", "]"}]}], ",", 
+    RowBox[{"S", "[", 
+     RowBox[{"-", "1"}], "]"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{
+  3.9207230580482025`*^9, {3.9207233319926133`*^9, 3.92072335968414*^9}, {
+   3.9207234129310493`*^9, 3.920723417686473*^9}, {3.920723596226633*^9, 
+   3.920723623213428*^9}, {3.9207244491141014`*^9, 3.9207244729709153`*^9}},
+ CellLabel->
+  "In[132]:=",ExpressionUUID->"c0d5c562-2bd1-47ce-b786-073a7a4a2d97"],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{
+  3.9207230583760786`*^9, {3.9207233542011304`*^9, 3.920723360031728*^9}, {
+   3.920723414437148*^9, 3.92072341820236*^9}, {3.9207235976716104`*^9, 
+   3.9207236238999186`*^9}, {3.9207244662983155`*^9, 3.920724473322137*^9}},
+ CellLabel->
+  "Out[132]=",ExpressionUUID->"cb650330-8d40-485f-bb00-33ce8df3dbf9"]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+},
+WindowSize->{456, 502},
+WindowMargins->{{Automatic, -5}, {Automatic, 0}},
+Magnification:>0.9 Inherited,
+FrontEndVersion->"13.2 for Microsoft Windows (64-bit) (January 30, 2023)",
+StyleDefinitions->FrontEnd`FileName[{"Report"}, "StandardReport.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"454c00e4-426e-453d-ada1-88aaae56e9fb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 154, 3, 30, "Subsection",ExpressionUUID->"892b4d8c-be93-4045-87d6-0bc58b536d10"],
+Cell[737, 27, 3020, 90, 672, "Text",ExpressionUUID->"28610a8f-158d-48b4-9546-4ebb7f4aa0ac"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3794, 122, 208, 4, 30, "Subsection",ExpressionUUID->"c4e5d508-c7e7-4554-bbc5-7f893d84e1c9"],
+Cell[CellGroupData[{
+Cell[4027, 130, 220, 4, 29, "Subsubsection",ExpressionUUID->"99f5a05f-dcfe-4aec-ba91-7ed6eaf0beac"],
+Cell[4250, 136, 3110, 87, 225, "Input",ExpressionUUID->"492014e5-e76f-47b9-81dc-8358b9a0b864"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[7397, 228, 222, 4, 29, "Subsubsection",ExpressionUUID->"73124b4f-7b23-40ed-879a-89ec01eae804"],
+Cell[7622, 234, 3396, 98, 327, "Input",ExpressionUUID->"2278653b-ab18-4c01-9ea8-eb36dad2b0e8"]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11067, 338, 255, 4, 30, "Subsection",ExpressionUUID->"73b3e06a-95f2-4d1a-a08a-aafd1f642b32"],
+Cell[CellGroupData[{
+Cell[11347, 346, 899, 23, 29, "Subsubsection",ExpressionUUID->"d033613c-373e-4312-a397-9194deb448fe"],
+Cell[12249, 371, 451, 12, 51, "Text",ExpressionUUID->"90b5b898-5975-4f30-9ca7-bf87961c7a88"],
+Cell[12703, 385, 498, 13, 35, "Input",ExpressionUUID->"e9320e7f-a7ee-47b5-ad00-e86724ae1706"],
+Cell[13204, 400, 1933, 54, 196, "Text",ExpressionUUID->"97840504-cee6-4316-bf89-3507d71e61d4"],
+Cell[CellGroupData[{
+Cell[15162, 458, 383, 8, 35, "Input",ExpressionUUID->"62b55a5f-f449-4a20-b426-8a0214a707a8"],
+Cell[15548, 468, 266, 6, 50, "Output",ExpressionUUID->"074f7ccc-7fdd-43af-b5bb-8f5ae8f35f50"]
+}, Open  ]],
+Cell[15829, 477, 2692, 81, 352, "Text",ExpressionUUID->"ebd59ed2-d761-430f-9457-6cdffad07a25"],
+Cell[CellGroupData[{
+Cell[18546, 562, 516, 13, 70, "Input",ExpressionUUID->"7965a21c-719a-4cfa-ad61-92127c90ef55"],
+Cell[19065, 577, 314, 7, 35, "Output",ExpressionUUID->"4d518394-88bb-48e0-9e24-5b449cde44d1"],
+Cell[19382, 586, 765, 23, 62, "Output",ExpressionUUID->"f2cda2f5-b938-4b63-92e9-524031cefe53"]
+}, Open  ]],
+Cell[20162, 612, 192, 3, 30, "Text",ExpressionUUID->"4553c34e-d11b-48d2-b7fa-b5712ffa0b59"],
+Cell[CellGroupData[{
+Cell[20379, 619, 385, 9, 47, "Input",ExpressionUUID->"d6bc99fe-424d-4555-9561-faa29f7cbada"],
+Cell[20767, 630, 719, 22, 62, "Output",ExpressionUUID->"0f27d376-deb6-447e-a424-67b3f82179f0"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[21535, 658, 753, 16, 29, "Subsubsection",ExpressionUUID->"1b145886-7005-4e36-a5f2-d604d7407bdc"],
+Cell[22291, 676, 5663, 165, 657, "Text",ExpressionUUID->"03d6909c-beee-45ba-800d-500386c141c6"],
+Cell[CellGroupData[{
+Cell[27979, 845, 860, 26, 66, "Input",ExpressionUUID->"f203b950-7642-4cd3-a16c-1d702050eb39"],
+Cell[28842, 873, 182, 3, 47, "Output",ExpressionUUID->"db2c39a2-4233-4abc-a4ee-4b4a11fcec89"],
+Cell[29027, 878, 179, 3, 47, "Output",ExpressionUUID->"f2bf8652-63fd-4758-ba59-f0106c9e132a"]
+}, Open  ]],
+Cell[29221, 884, 193, 3, 30, "Text",ExpressionUUID->"ca2a6265-b1cc-456f-8d21-73f7a2faf48a"],
+Cell[CellGroupData[{
+Cell[29439, 891, 539, 15, 66, "Input",ExpressionUUID->"34519afc-7934-44bf-a128-cffcf84d26c2"],
+Cell[29981, 908, 693, 21, 62, "Output",ExpressionUUID->"40f1a227-ea8e-460b-84b3-3a0bed8415f8"]
+}, Open  ]],
+Cell[30689, 932, 3034, 85, 329, "Text",ExpressionUUID->"6d7c00c5-3269-4d14-a853-6c57ae00e27c"],
+Cell[CellGroupData[{
+Cell[33748, 1021, 829, 23, 66, "Input",ExpressionUUID->"c0d5c562-2bd1-47ce-b786-073a7a4a2d97"],
+Cell[34580, 1046, 360, 6, 47, "Output",ExpressionUUID->"cb650330-8d40-485f-bb00-33ce8df3dbf9"]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+
