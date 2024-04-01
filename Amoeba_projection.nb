@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[   1223621,      25677]
-NotebookOptionsPosition[   1220473,      25613]
-NotebookOutlinePosition[   1220982,      25631]
-CellTagsIndexPosition[   1220939,      25628]
+NotebookDataLength[   1223407,      25668]
+NotebookOptionsPosition[   1220266,      25604]
+NotebookOutlinePosition[   1220769,      25622]
+CellTagsIndexPosition[   1220726,      25619]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -31,8 +31,7 @@ Cell[TextData[{
 toric polygon. Let (x, y) be the ",
  Cell[BoxData[
   FormBox[
-   SuperscriptBox["C", "*"], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+   SuperscriptBox["C", "*"], TraditionalForm]],ExpressionUUID->
   "e2f3a142-8c1c-4539-ac85-d0cee297a6bf"],
  " coordinates used for expressing the Newton polygon of the toric diagram. \
 The amoeba projection is obtained as:\n\n\t\t\t ",
@@ -51,9 +50,7 @@ The amoeba projection is obtained as:\n\n\t\t\t ",
       RowBox[{
        RowBox[{"log", "|", "x", "|"}], ",", " ", 
        RowBox[{"log", " ", "|", "y", "|"}]}], ")"}]}], ","}], 
-   TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
-  "c9f11eb4-8db8-4f93-b187-44b01ce6515d"],
+   TraditionalForm]],ExpressionUUID->"c9f11eb4-8db8-4f93-b187-44b01ce6515d"],
  "\n\nwhere ",
  Cell[BoxData[
   FormBox[
@@ -81,46 +78,39 @@ two functions defined in this notebok:\n\n- ",
   FormBox[
    RowBox[{"{", 
     RowBox[{"{", 
-     SubscriptBox["r", "x"]}]}], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+     SubscriptBox["r", "x"]}]}], TraditionalForm]],ExpressionUUID->
   "efc600b2-111e-4b2f-96aa-5963c367f7a3"],
  "_min, ",
  Cell[BoxData[
   FormBox[
-   SubscriptBox["r", "x"], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+   SubscriptBox["r", "x"], TraditionalForm]],ExpressionUUID->
   "ec66c3c9-92c3-4ef6-9515-36da717e9df4"],
  "_max}, ",
  Cell[BoxData[
   FormBox[
    RowBox[{"{", 
-    SubscriptBox["r", "y"]}], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+    SubscriptBox["r", "y"]}], TraditionalForm]],ExpressionUUID->
   "f68d1072-b4dd-414f-be04-f93a35e65080"],
  "_min, ",
  Cell[BoxData[
   FormBox[
-   SubscriptBox["r", "y"], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+   SubscriptBox["r", "y"], TraditionalForm]],ExpressionUUID->
   "17e2af8a-1856-404c-8a4f-2b0da01ed9c9"],
  "_max}} is the rectangular domain of ",
  Cell[BoxData[
   FormBox[
-   SubscriptBox["r", "x"], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+   SubscriptBox["r", "x"], TraditionalForm]],ExpressionUUID->
   "6a51e494-7693-4cb7-9532-0749ef3c5965"],
  " and ",
  Cell[BoxData[
   FormBox[
-   SubscriptBox["r", "y"], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+   SubscriptBox["r", "y"], TraditionalForm]],ExpressionUUID->
   "97280a62-62d3-475f-9e5d-df5c85d0fed2"],
  " used in the projection\n- NR and Ntheta correspond to the number of data \
 points for the absolute value (R) and the angle (theta) of the complex \
 variable in the amoeba plane -- i.e. the more points, the denser the \
-projection.",
- "\n\nFor more details on the implementation, we refer to [1].\n\nReferences:\
-\n[1] D. Bogdanov, A. A. Kytmanov and T. M. Sadykov, ",
+projection.\n\nFor more details on the implementation, we refer to [1].\n\n\
+References:\n[1] D. Bogdanov, A. A. Kytmanov and T. M. Sadykov, ",
  StyleBox["Algorithmic computation of polynomial amoebas",
   FontSlant->"Italic"],
  ", in International Workshop on Computer Algebra in Scientific Computing, \
@@ -131,8 +121,9 @@ http://dvbogdanov.ru/amoeba"
   3.920566592771018*^9, 3.920566689716487*^9}, {3.920566732598135*^9, 
   3.9205667846412544`*^9}, {3.920566838539731*^9, 3.920566953103301*^9}, {
   3.9205670510423737`*^9, 3.9205671066140785`*^9}, {3.9205671477233734`*^9, 
-  3.9205671662037544`*^9}, {3.9205673034139996`*^9, 
-  3.920567315657987*^9}},ExpressionUUID->"cb1a02b3-fd79-4afc-ab63-\
+  3.9205671662037544`*^9}, {3.9205673034139996`*^9, 3.920567315657987*^9}, {
+  3.920968141921787*^9, 
+  3.920968144899151*^9}},ExpressionUUID->"cb1a02b3-fd79-4afc-ab63-\
 8ef9905b5991"]
 }, Open  ]],
 
@@ -25611,8 +25602,8 @@ Cell[BoxData[
 }, Closed]]
 }, Open  ]]
 },
-WindowSize->{913.5, 508.},
-WindowMargins->{{-5.5, Automatic}, {Automatic, -5.5}},
+WindowSize->{902.5, 497.},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
 Magnification:>0.8 Inherited,
 FrontEndVersion->"13.2 for Microsoft Windows (64-bit) (January 30, 2023)",
 StyleDefinitions->FrontEnd`FileName[{"Report"}, "StandardReport.nb", 
@@ -25632,50 +25623,50 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 253, 4, 56, "Section",ExpressionUUID->"8e4ab60a-83e3-4010-bd47-ce93ab6ed36d"],
-Cell[836, 28, 3840, 107, 435, "Text",ExpressionUUID->"cb1a02b3-fd79-4afc-ab63-8ef9905b5991"]
+Cell[836, 28, 3633, 98, 435, "Text",ExpressionUUID->"cb1a02b3-fd79-4afc-ab63-8ef9905b5991"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4713, 140, 211, 4, 56, "Section",ExpressionUUID->"e4f7a832-cb95-4f50-8445-8b723bb9d2d1"],
+Cell[4506, 131, 211, 4, 56, "Section",ExpressionUUID->"e4f7a832-cb95-4f50-8445-8b723bb9d2d1"],
 Cell[CellGroupData[{
-Cell[4949, 148, 216, 4, 27, "Subsection",ExpressionUUID->"d35bf3e4-0a5c-4a85-8a7f-425e42a0aed2"],
-Cell[5168, 154, 6633, 164, 441, "Input",ExpressionUUID->"50ea3845-5c50-4d08-9375-b49447c153cb"]
+Cell[4742, 139, 216, 4, 27, "Subsection",ExpressionUUID->"d35bf3e4-0a5c-4a85-8a7f-425e42a0aed2"],
+Cell[4961, 145, 6633, 164, 441, "Input",ExpressionUUID->"50ea3845-5c50-4d08-9375-b49447c153cb"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[11838, 323, 267, 4, 27, "Subsection",ExpressionUUID->"c28e4e29-edf5-447a-b552-f33e6a14a13f"],
-Cell[12108, 329, 5514, 137, 322, "Input",ExpressionUUID->"be6fd062-69d8-4063-87a5-3f8df8f673da"]
+Cell[11631, 314, 267, 4, 27, "Subsection",ExpressionUUID->"c28e4e29-edf5-447a-b552-f33e6a14a13f"],
+Cell[11901, 320, 5514, 137, 322, "Input",ExpressionUUID->"be6fd062-69d8-4063-87a5-3f8df8f673da"]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[17671, 472, 160, 3, 56, "Section",ExpressionUUID->"f676b1c0-2355-464b-bb6e-524521358c84"],
+Cell[17464, 463, 160, 3, 56, "Section",ExpressionUUID->"f676b1c0-2355-464b-bb6e-524521358c84"],
 Cell[CellGroupData[{
-Cell[17856, 479, 614, 17, 27, "Subsection",ExpressionUUID->"6ca1a843-fd73-4b17-ab0f-ceb03ac1efea"],
+Cell[17649, 470, 614, 17, 27, "Subsection",ExpressionUUID->"6ca1a843-fd73-4b17-ab0f-ceb03ac1efea"],
 Cell[CellGroupData[{
-Cell[18495, 500, 1966, 64, 163, "Input",ExpressionUUID->"53e4de62-0e5a-484f-9cf3-463af39f8857"],
-Cell[20464, 566, 729, 21, 35, "Output",ExpressionUUID->"a12fc9f2-2ff5-4291-945b-952c444bfdb2"]
+Cell[18288, 491, 1966, 64, 163, "Input",ExpressionUUID->"53e4de62-0e5a-484f-9cf3-463af39f8857"],
+Cell[20257, 557, 729, 21, 35, "Output",ExpressionUUID->"a12fc9f2-2ff5-4291-945b-952c444bfdb2"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[21230, 592, 3323, 93, 188, "Input",ExpressionUUID->"57567871-4d51-48e6-a2b1-d377ae2437b0"],
-Cell[24556, 687, 179157, 3449, 176, 163662, 3196, "CachedBoxData", "BoxData", "Output",ExpressionUUID->"80634ed9-5006-4251-b9df-308e88863620"]
+Cell[21023, 583, 3323, 93, 188, "Input",ExpressionUUID->"57567871-4d51-48e6-a2b1-d377ae2437b0"],
+Cell[24349, 678, 179157, 3449, 176, 163662, 3196, "CachedBoxData", "BoxData", "Output",ExpressionUUID->"80634ed9-5006-4251-b9df-308e88863620"]
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[203762, 4142, 625, 19, 27, "Subsection",ExpressionUUID->"bfcc2e29-13ba-49f0-8b46-e8ae8a8125af"],
+Cell[203555, 4133, 625, 19, 27, "Subsection",ExpressionUUID->"bfcc2e29-13ba-49f0-8b46-e8ae8a8125af"],
 Cell[CellGroupData[{
-Cell[204412, 4165, 2670, 85, 149, "Input",ExpressionUUID->"d929f8cb-5663-4cac-8fe8-62c4e11eeba7"],
-Cell[207085, 4252, 1201, 37, 35, "Output",ExpressionUUID->"f279cd12-b794-40a4-9faa-3b2124bac41f"]
+Cell[204205, 4156, 2670, 85, 149, "Input",ExpressionUUID->"d929f8cb-5663-4cac-8fe8-62c4e11eeba7"],
+Cell[206878, 4243, 1201, 37, 35, "Output",ExpressionUUID->"f279cd12-b794-40a4-9faa-3b2124bac41f"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[208323, 4294, 2096, 44, 107, "Input",ExpressionUUID->"671f75a1-938d-41ab-92bd-78bc8bff8208"],
-Cell[210422, 4340, 1544, 33, 31, "Output",ExpressionUUID->"2a803c14-9c4d-493e-a7e2-fef64a3b4e0c"],
-Cell[211969, 4375, 1137, 20, 32, "Output",ExpressionUUID->"b8ce0cc5-a2ef-4f09-84d2-745374ed7e08"]
+Cell[208116, 4285, 2096, 44, 107, "Input",ExpressionUUID->"671f75a1-938d-41ab-92bd-78bc8bff8208"],
+Cell[210215, 4331, 1544, 33, 31, "Output",ExpressionUUID->"2a803c14-9c4d-493e-a7e2-fef64a3b4e0c"],
+Cell[211762, 4366, 1137, 20, 32, "Output",ExpressionUUID->"b8ce0cc5-a2ef-4f09-84d2-745374ed7e08"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[213143, 4400, 5049, 118, 186, "Input",ExpressionUUID->"19dee4bd-ebf8-4f78-91ac-0060e873a4fc"],
-Cell[218195, 4520, 268136, 5098, 307, 210637, 4158, "CachedBoxData", "BoxData", "Output",ExpressionUUID->"c8cbdcad-8272-49a7-8bb5-502399b97900"]
+Cell[212936, 4391, 5049, 118, 186, "Input",ExpressionUUID->"19dee4bd-ebf8-4f78-91ac-0060e873a4fc"],
+Cell[217988, 4511, 268136, 5098, 307, 210637, 4158, "CachedBoxData", "BoxData", "Output",ExpressionUUID->"c8cbdcad-8272-49a7-8bb5-502399b97900"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[486368, 9623, 2521, 78, 170, "Input",ExpressionUUID->"f934b423-3adc-428a-bf22-cc19ebd762bf"],
-Cell[488892, 9703, 731541, 15905, 197, "Output",ExpressionUUID->"47d56231-50e7-4d1d-b216-e6bc4136c44c"]
+Cell[486161, 9614, 2521, 78, 170, "Input",ExpressionUUID->"f934b423-3adc-428a-bf22-cc19ebd762bf"],
+Cell[488685, 9694, 731541, 15905, 197, "Output",ExpressionUUID->"47d56231-50e7-4d1d-b216-e6bc4136c44c"]
 }, Open  ]]
 }, Closed]]
 }, Open  ]]

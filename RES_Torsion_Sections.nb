@@ -1,1 +1,55 @@
-Notebook[{}]
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1471,         47]
+NotebookOptionsPosition[       938,         31]
+NotebookOutlinePosition[      1420,         48]
+CellTagsIndexPosition[      1377,         45]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["ReadMe", "Subsection",
+ CellChangeTimes->{{3.920968875674336*^9, 
+  3.9209688772035294`*^9}},ExpressionUUID->"bcda6a46-92a7-4400-9e2c-\
+75ddac2c9b36"],
+
+Cell["Torsion sections", "Subsection",
+ CellChangeTimes->{{3.920968875674336*^9, 3.9209688772035294`*^9}, {
+  3.920978239497577*^9, 
+  3.9209782421363783`*^9}},ExpressionUUID->"b54b2520-2478-4dcb-99ae-\
+637457132295"]
+},
+WindowSize->{581.25, 417.},
+WindowMargins->{{Automatic, -772.5}, {-195, Automatic}},
+FrontEndVersion->"13.2 for Microsoft Windows (64-bit) (January 30, 2023)",
+StyleDefinitions->FrontEnd`FileName[{"Report"}, "StandardReport.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"ccf26e20-9e6f-44f7-9dbc-c3df9a5f19c2"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 156, 3, 34, "Subsection",ExpressionUUID->"bcda6a46-92a7-4400-9e2c-75ddac2c9b36"],
+Cell[717, 25, 217, 4, 34, "Subsection",ExpressionUUID->"b54b2520-2478-4dcb-99ae-637457132295"]
+}
+]
+*)
+
