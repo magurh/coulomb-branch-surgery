@@ -24,15 +24,15 @@ General controls
 
 Using the orange coloured buttons to:
 
-\textbf{Scale button:}             Change scale (in pixels per unit)
+<b>Scale button:</b>             Change scale (in pixels per unit)
 
-\textbf{Expand Rectangle button:}  Click on the screen and drag the mouse to form a rectangle. 
+<b>Expand Rectangle button:</b>  Click on the screen and drag the mouse to form a rectangle. 
 			  Then click on 'expand rectangle' and the scale changes so the height of the rectangle becomes the height of the screen.  
                           The center of the rectangle moves the the center of the screen (in vertical direction only).
 
-\textbf{Colour choice buttons:}    Change colour of triangles
+<b>Colour choice buttons:</b>    Change colour of triangles
 
-\textbf{<-- <- 0 -> --> buttons:}  Change position of the origin 
+<b><-- <- 0 -> --> buttons:</b>  Change position of the origin 
                           (Press "0" to put the origin in the center)
 
  
@@ -44,19 +44,19 @@ Draws Fundamental Domain for intersection of one of $\Gamma^0(N), \Gamma^1(N), \
 $\Gamma^0(M), \Gamma^1(M), \Gamma_0(M), \Gamma_1(M), \Gamma(M)$.
 
 
-\textbf{Type of group:}  There are choice buttons to choose which of the above types of groups to use.
+<b>Type of group:</b>  There are choice buttons to choose which of the above types of groups to use.
 
-\textbf{Changing N:}  Type in N, in the box provided, then click on "draw" 
+<b>Changing N:</b>  Type in N, in the box provided, then click on "draw" 
              OR press the ">" and "<" buttons to increase N in steps.
 
-\textbf{Changing M:}  Type in M, in the box provided, then click on "draw" 
+<b>Changing M:</b>  Type in M, in the box provided, then click on "draw" 
              OR press the ">" and "<" buttons to increase N in steps.
 
-\textbf{Edit Mode:}   Click on the "edit" button then you can move the triangles to give a different fundamental domain by clicking on the yellow circles on the boundaries of the triangles.
+<b>Edit Mode:</b>   Click on the "edit" button then you can move the triangles to give a different fundamental domain by clicking on the yellow circles on the boundaries of the triangles.
 
-\textbf{Links Mode:}  Click on the "link" button to show how the boundary is linked up.
+<b>Links Mode:</b>  Click on the "link" button to show how the boundary is linked up.
 
-\textbf{Find matrix:} Click on a triangle to find out what the corresponding coset representative is, as a 2 by 2 matrix.
+<b>Find matrix:</b> Click on a triangle to find out what the corresponding coset representative is, as a 2 by 2 matrix.
 
 
 Triangle Drawing mode
@@ -69,12 +69,12 @@ OR use the buttons $TM$, $RM$, etc to transform the matrix $M$.
 Matrices are: $ T=  \begin{bmatrix} 1 & 1 \\\ 0 & 1 \end{bmatrix}$, $  T'=\begin{bmatrix} 1 & -1 \\\ 0 & 1 \end{bmatrix}$, 
 $S=\begin{bmatrix} 0 & -1 \\\ 1 & 0 \end{bmatrix}$, $R = \begin{bmatrix} 0 & -1 \\\ 1 & 1 \end{bmatrix}$.
 
-\textbf{move/copy:}  If move is selected, when the matrix is applied (eg, T, R, etc) the triangle is moved by this matrix.  
+<b>move/copy:</b>  If move is selected, when the matrix is applied (eg, T, R, etc) the triangle is moved by this matrix.  
             If copy is selected, a copy is made, which is a translate by the applied matrix.
 
-\textbf{Move to:}    this moves the origin so that the triangle just drawn is in the middle of the screen.
+<b>Move to:</b>    this moves the origin so that the triangle just drawn is in the middle of the screen.
 
-\textbf{Scale to:}   If you click on this, in addition to moving, it also scales, so the triangle just drawn is in the middle of the screen, 
+<b>Scale to:</b>   If you click on this, in addition to moving, it also scales, so the triangle just drawn is in the middle of the screen, 
             AND at a reasonable size so you can see it.
 
 
