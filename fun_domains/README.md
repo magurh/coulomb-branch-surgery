@@ -18,6 +18,7 @@ To run the resulting program, type:
 
 A java applet should pop up.
 
+<br>
 
 General controls
 -----------------
@@ -36,6 +37,7 @@ Using the orange coloured buttons to:
                           (Press "0" to put the origin in the center)
 
  
+<br>
 
 Fundamental domain drawing mode
 --------------------------------
@@ -58,6 +60,7 @@ $\Gamma^0(M), \Gamma^1(M), \Gamma_0(M), \Gamma_1(M), \Gamma(M)$.
 
 <b>Find matrix:</b> Click on a triangle to find out what the corresponding coset representative is, as a 2 by 2 matrix.
 
+<br>
 
 Triangle Drawing mode
 ----------------------
@@ -66,8 +69,17 @@ Here you can draw a triangle corresponding to transforming a standard domain by 
 
 You can enter the matrix, by typing in the appropriate spaces on the right of the screen, and then click on "draw"
 OR use the buttons $TM$, $RM$, etc to transform the matrix $M$. 
-Matrices are: $ T=  \begin{bmatrix} 1 & 1 \\\ 0 & 1 \end{bmatrix}$, $  T'=\begin{bmatrix} 1 & -1 \\\ 0 & 1 \end{bmatrix}$, 
-$S=\begin{bmatrix} 0 & -1 \\\ 1 & 0 \end{bmatrix}$, $R = \begin{bmatrix} 0 & -1 \\\ 1 & 1 \end{bmatrix}$.
+Matrices are: <br>
+
+```math
+T=  \begin{pmatrix} 1 & 1 \\\ 0 & 1 \end{pmatrix}, ~~~~~~~~~~~
+ T'=\begin{pmatrix} 1 & -1 \\\ 0 & 1 \end{pmatrix},
+```
+
+```math
+S=\begin{pmatrix} 0 & -1 \\\ 1 & 0 \end{pmatrix}, ~~~~~~~~~~~
+R = \begin{pmatrix} 0 & -1 \\\ 1 & 1 \end{pmatrix}.
+```
 
 <b>move/copy:</b>  If move is selected, when the matrix is applied (eg, T, R, etc) the triangle is moved by this matrix.  
             If copy is selected, a copy is made, which is a translate by the applied matrix.
