@@ -17,10 +17,78 @@ The repository includes the following files:
   <li><b>Palette_for_tables.nb</b> - a palette for inserting tables into Mathematica.</li>
 </ul>
 
-Each notebook comes with a ReadMe section inside. We provide a brief description of their utility below. Some of these tools have also been used in the related works:
+<b>Each notebook comes with a ReadMe section inside.</b> We provide a brief description of their utility below. Some of these tools have also been used in the related works:
 
 [2] C. Closset and H. Magureanu, <i>The $U$-plane of rank-one 4d $\mathcal{N} = 2$ KK theories</i>, SciPost Phys. 12 (2022) 065, arXiv:[2107.03509].<br>
 [3] J. Aspman, E. Furrer and J. Manschot, <i>Cutting and gluing with running couplings in $\mathcal{N} = 2$ QCD</i>, Phys. Rev. D 105 (2022) 025021, arXiv:[2107.04600].<br>
 [4] H. Magureanu, <i>Seiberg-Witten geometry, modular rational elliptic surfaces and BPS quivers</i>, JHEP 05 (2022) 163, arXiv:[2203.03755].<br>
 [5] J. Aspman, E. Furrer, J. Manschot, <i>Four flavors, triality, and bimodular forms</i>, Phys. Rev. D 105 (2022) 025017, arXiv:[2110.11969].<br>
 [6] C. Closset and H. Magureanu, <i>Reading between the rational sections: Global structures of 4d $\mathcal{N}=2$ KK theories</i>, arXiv:[2308.10225].<br>
+
+
+### Seiberg-Witten_curves.nb
+
+We express the Seiberg-Witten curves for the 4d $\mathcal{N}=2$ KK theories obtained from the toroidal compactification of the 5d $\mathcal{N}=1 rank-one $E_n$  SCFTs in two distinct ways:
+
+<ol>
+	<li> In terms of the $E_n$ flavour symmetry characters. </li>
+  <li> In terms of gauge theory parameters. </li> 
+ </ol>
+	
+For more details on how the mapping between the characters and the gauge theory parameters is realised, see [2, Appendix A]. The notebook also includes the SW curves of 4d SU(2) gauge theories with $N_f < 4$ fundamental flavours, in the original conventions of Seiberg and Witten.
+
+### Persson_list.nb
+
+The notebook includes Persson's complete list of rational elliptic surfaces, with an additional correction. The notebook can be used for finding specific configurations and tabulating for any desired theory by fixing certain singular fibers. Below is an example for the $E_4$ theory:
+
+<p align="center">
+  <img src="https://github.com/magurh/Coulomb-branch-surgery/assets/122356566/f2e7e96c-5dd0-413b-9b70-f1202ba1658c")
+>
+</p>
+
+### Character_Decomposition.nb
+
+This notebook runs on the GroupMath package and surves two main purposes:
+
+<ol>
+	<li> Finding configurations of singular fibers from character decomposition. </li>
+  <li> Express characters in terms of gauge theory parameters. </li> 
+ </ol>
+
+### RES_Torsion_Sections.nb
+
+This notebook can be used to find the (torsion) sections of rational elliptic surfaces (RES) and to compute their intersections with the singular fibers. Recall that in the Weierstrass model, a singular fiber is either a curve with a node, or a curve with a cusp.
+
+<p align="center">
+  <img src="https://github.com/magurh/Coulomb-branch-surgery/assets/122356566/4bc14462-0df6-4a5f-8bb6-f48c8b34aa41")
+>
+</p>
+
+### FunDomain.java
+
+This is a java Applet originally written by Helena Verill for drawing fundamental domains of subgroups of SL(2, Z). As the original website of the owner is down, I am uploading a slightly modified version of FunDomain, which maintains the same functionality. A separate ReadMe file is included in the fun_domain folder.
+
+<p align="center">
+  <img src="https://github.com/magurh/Coulomb-branch-surgery/assets/122356566/8e54bedf-a6a8-482e-9628-11f6ec6ee21f")
+>
+</p>
+
+### Monodromies.nb
+
+This notebook can be used together with the FunDomain java applet for changing fundamental domains. It includes a range of functions for computing coset representatives, monodromies, and more.
+
+
+### Amoeba_projection.nb
+
+This code is an example of how to implement the amoeba projection for any toric polygon. The implementation follows D. Bogdanov's online tool at http://dvbogdanov.ru/amoeba. See also:
+
+[7] D. Bogdanov, A. A. Kytmanov and T. M. Sadykov, Algorithmic computation of polynomial amoebas, in International Workshop on Computer Algebra in Scientific Computing, pp. 87-100, Springer, 2016.
+
+<p align="center">
+  <img src="https://github.com/magurh/Coulomb-branch-surgery/assets/122356566/f8e0fd99-870c-4cb8-aed3-d3602477c9ab")
+>
+</p>
+
+### Palette_for_tables.nb
+
+This notebook offers a palette for importing tables. The directions for using it are rather straightforward and provided in the notebook. All credits go to @Szabolcs Horvát: https://github.com/szhorvat/TablePaste/.
