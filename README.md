@@ -3,7 +3,7 @@
 
 This repository is a collection of notebooks and tools useful for analyzing the Seiberg-Witten geometry of four-dimensional supersymmetric field theories, with $\mathcal{N} = 2$ supersymmetry. The repository accompanies the following paper:
 
-[1] E. Furrer and H. Magureanu, <i>Coulomb branch surgery: Holonomy saddles, S-folds and discrete symmetry gaugings</i>, arXiv:[2403.XXXX].
+[1] E. Furrer and H. Magureanu, <i>Coulomb branch surgery: Holonomy saddles, S-folds and discrete symmetry gaugings</i>, <a href="https://arxiv.org/abs/2404.02955">2404.02955</a>.
 
 The repository includes the following files:
 
