@@ -8,13 +8,19 @@ The original program is covered by the GNU GPL license.
 
 To run the program, you need to have "javac" installed to compile the program, and "java" to run it. You can get these from: http://java.sun.com/j2se/.
 If you already have java, you can find the version by typing
-> java -version
+```
+java -version
+```
 
 The program works for versions newer than 1.1.1. To compile the program, type in a command line:
-> javac FunDomain.java
+```
+javac FunDomain.java
+```
 
 To run the resulting program, type:
-> java FunDomain
+```
+java FunDomain
+```
 
 A java applet should pop up.
 
@@ -25,15 +31,15 @@ General controls
 
 Using the orange coloured buttons to:
 
-<b>Scale button:</b>             Change scale (in pixels per unit)
+`Scale button`:             Change scale (in pixels per unit)
 
-<b>Expand Rectangle button:</b>  Click on the screen and drag the mouse to form a rectangle. 
+`Expand Rectangle button`:  Click on the screen and drag the mouse to form a rectangle. 
 			  Then click on 'expand rectangle' and the scale changes so the height of the rectangle becomes the height of the screen.  
                           The center of the rectangle moves the the center of the screen (in vertical direction only).
 
-<b>Colour choice buttons:</b>    Change colour of triangles
+`Colour choice buttons`:    Change colour of triangles
 
-<b><-- <- 0 -> --> buttons:</b>  Change position of the origin 
+`<-- <- 0 -> --> buttons`:  Change position of the origin 
                           (Press "0" to put the origin in the center)
 
  
@@ -48,15 +54,15 @@ $\Gamma^0(M), \Gamma^1(M), \Gamma_0(M), \Gamma_1(M), \Gamma(M)$.
 
 <b>Type of group:</b>  There are choice buttons to choose which of the above types of groups to use.
 
-<b>Changing N:</b>  Type in N, in the box provided, then click on "draw" 
-             OR press the ">" and "<" buttons to increase N in steps.
+<b>Changing N:</b>  Type in N, in the box provided, then click on `draw` 
+             OR press the `>` and `<` buttons to increase N in steps.
 
-<b>Changing M:</b>  Type in M, in the box provided, then click on "draw" 
-             OR press the ">" and "<" buttons to increase N in steps.
+<b>Changing M:</b>  Type in M, in the box provided, then click on `draw` 
+             OR press the `>` and `<` buttons to increase N in steps.
 
-<b>Edit Mode:</b>   Click on the "edit" button then you can move the triangles to give a different fundamental domain by clicking on the yellow circles on the boundaries of the triangles.
+<b>Edit Mode:</b>   Click on the `edit` button then you can move the triangles to give a different fundamental domain by clicking on the yellow circles on the boundaries of the triangles.
 
-<b>Links Mode:</b>  Click on the "link" button to show how the boundary is linked up.
+<b>Links Mode:</b>  Click on the `link` button to show how the boundary is linked up.
 
 <b>Find matrix:</b> Click on a triangle to find out what the corresponding coset representative is, as a 2 by 2 matrix.
 
@@ -81,12 +87,12 @@ S=\begin{pmatrix} 0 & -1 \\\ 1 & 0 \end{pmatrix}, ~~~~~~~~~~~
 R = \begin{pmatrix} 0 & -1 \\\ 1 & 1 \end{pmatrix}.
 ```
 
-<b>move/copy:</b>  If move is selected, when the matrix is applied (eg, T, R, etc) the triangle is moved by this matrix.  
+`move/copy`:  If move is selected, when the matrix is applied (eg, T, R, etc) the triangle is moved by this matrix.  
             If copy is selected, a copy is made, which is a translate by the applied matrix.
 
-<b>Move to:</b>    this moves the origin so that the triangle just drawn is in the middle of the screen.
+`Move to`:    this moves the origin so that the triangle just drawn is in the middle of the screen.
 
-<b>Scale to:</b>   If you click on this, in addition to moving, it also scales, so the triangle just drawn is in the middle of the screen, 
+`Scale to`:   If you click on this, in addition to moving, it also scales, so the triangle just drawn is in the middle of the screen, 
             AND at a reasonable size so you can see it.
 
 
