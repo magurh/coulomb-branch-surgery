@@ -29,7 +29,7 @@ The repository includes the following files:
 
 <br>
 
-### Seiberg-Witten_curves.nb
+### `Seiberg-Witten_curves.nb`
 ----------------------------
 
 We express the Seiberg-Witten curves for the 4d $\mathcal{N}=2$ KK theories obtained from the toroidal compactification of the 5d $\mathcal{N}=1$ rank-one $E_n$  SCFTs in two distinct ways:
@@ -44,7 +44,7 @@ For more details on how the mapping between the characters and the gauge theory 
 
 <br>
 
-### Persson_list.nb
+### `Persson_list.nb`
 ----------------------------
 
 The notebook includes Persson's complete list of rational elliptic surfaces, with an additional correction. The notebook can be used for finding specific configurations and tabulating for any desired theory by fixing certain singular fibers. Below is an example for the $E_4$ theory:
@@ -57,7 +57,7 @@ The notebook includes Persson's complete list of rational elliptic surfaces, wit
 
 <br>
 
-### Character_Decomposition.nb
+### `Character_Decomposition.nb`
 ----------------------------
 
 This notebook runs on the GroupMath package and surves two main purposes:
@@ -70,7 +70,7 @@ This notebook runs on the GroupMath package and surves two main purposes:
 
 <br>
 
-### RES_Torsion_Sections.nb
+### `RES_Torsion_Sections.nb`
 ----------------------------
 
 This notebook can be used to find the (torsion) sections of rational elliptic surfaces (RES) and to compute their intersections with the singular fibers. Recall that in the Weierstrass model, a singular fiber is either a curve with a node, or a curve with a cusp.
@@ -83,7 +83,7 @@ This notebook can be used to find the (torsion) sections of rational elliptic su
 
 <br>
 
-### FunDomain.java
+### `FunDomain.java`
 ----------------------------
 
 This is a java Applet originally written by Helena Verill for drawing fundamental domains of subgroups of SL(2, Z). As the original website of the owner is down, I am uploading a slightly modified version of FunDomain, which maintains the same functionality. A separate ReadMe file is included in the fun_domain folder.
@@ -96,7 +96,7 @@ This is a java Applet originally written by Helena Verill for drawing fundamenta
 
 <br>
 
-### Monodromies.nb
+### `Monodromies.nb`
 ----------------------------
 
 This notebook can be used together with the FunDomain java applet for changing fundamental domains. It includes a range of functions for computing coset representatives, monodromies, and more.
@@ -104,7 +104,7 @@ This notebook can be used together with the FunDomain java applet for changing f
 
 <br>
 
-### Amoeba_projection.nb
+### `Amoeba_projection.nb`
 ----------------------------
 
 This code is an example of how to implement the amoeba projection for any toric polygon. The implementation follows D. Bogdanov's online tool at http://dvbogdanov.ru/amoeba. See also:
@@ -119,7 +119,7 @@ This code is an example of how to implement the amoeba projection for any toric 
 
 <br>
 
-### Palette_for_tables.nb
+### `Palette_for_tables.nb`
 ----------------------------
 
 This notebook offers a palette for importing tables. The directions for using it are rather straightforward and provided in the notebook. All credits go to @Szabolcs Horvát: https://github.com/szhorvat/TablePaste/.
