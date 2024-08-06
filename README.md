@@ -1,3 +1,7 @@
+[![arXiv:2404.02955](http://img.shields.io/badge/hep.th-arXiv%3A2404.02955-B31B1B.svg)](https://arxiv.org/abs/2404.02955) 
+[![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+<img src="https://img.shields.io/badge/-Wolfram Mathematica-DD1100?style=flat&logo=wolframmathematica&logoColor=white"/>
+
 # Coulomb branch surgery
 
 
